@@ -16,6 +16,27 @@ function imprimirPaciente(nombre, apellido, edad, ciudad, genero, pais){
 	this.gender 	= genero;
 	this.country 	= pais;
 
+	//Nota: Cambia los alerts y escribe bajo los inputs.
+
+	if(this.name.length == 0){
+		alert("Escribe tu nombre")
+		if(this.lastname.length == 0){
+			alert("Escribe tu apellido")
+			if(this.age.length == 0){
+				alert("Escribe tu edad")
+				if(this.city.length == 0){
+					alert("Escribe tu ciudad")
+				}
+			}
+		}
+	}
+
+	if(this.gender == 0){
+		alert("Selecciona una opción en género");
+	}else if(this.country == 0){
+		alert("Selecciona una opción en país");
+	}
+
 	var div = document.createElement("div");
 		div.setAttribute("class", "clase-pacientes")
 	var parrafoNombre = document.createElement("p");
