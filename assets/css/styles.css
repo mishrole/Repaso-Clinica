@@ -5,18 +5,34 @@ html{
 body{
 	font-family: 'Raleway', sans-serif;
 	font-size: 15px;
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	background-image: url(../img/cl6.jpg);
+	background-position: center;
+	background-size: auto;
+	background-repeat: no-repeat;
+
+}
+
+#fondo-form{
+
+	display: inline-block;
+	border:30px solid #ffffff;
+	background: #ffffff;
+	margin-top: 50px;
+	border-width: 60px;
 }
 
 .divs-form {
 	margin-bottom: 20px;
-}
-
-#contenedor-form {
-	margin-top: 70px;
+	position: center;
 }
 
 #title-form {
 	font-size: 30px;
+	color: #292929;
+	text-align: center;
 	margin-bottom: 50px;
 }
 
@@ -37,4 +53,5 @@ body{
 
 .span {
 	color: #ff3f3f;
+	font-size: 10px;
 }

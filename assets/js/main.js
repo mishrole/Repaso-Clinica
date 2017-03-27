@@ -23,8 +23,10 @@ function imprimirPaciente(nombre, apellido, edad, ciudad, genero, pais){
 	this.gender 	= genero;
 	this.country 	= pais;
 
-	var regLetras = /^[a-zA-Z\u00E0-\u00FC]+$/; //Tildes
-	var regNumeros = /[0-9]+/;
+	var regLetras = /^[a-zA-Z\u00E0-\u00FC\s]+$/; //Tildes
+	var regNumeros = /^[1-9][0-9]?$|^100$/;
+	var regMayus = /^[A-Z]{1}/;
+	// Regex: /(?:\b|-)([1-9]{1,2}[0]?|100)\b/;
 
 	//Validaciones de vacío
 
@@ -70,6 +72,13 @@ function imprimirPaciente(nombre, apellido, edad, ciudad, genero, pais){
 
 	//Validaciones de contenido
 
+
+	if(this.name.length > 1 && this.name.search(regMayus)){
+		alert("La primera letra de tu nombre debe estar en mayúsculas")
+	}else if(this.lastname.length > 1 && this.lastname.search(regMayus)){
+		alert("La primera letra de tu apellido debe estar en mayúsculas")
+	}
+
 	if(this.name.length > 1 && this.name.search(regLetras)){
 		spanName.innerHTML = " "
 		alert("Ingresa sólo letras en nombre");
@@ -79,11 +88,11 @@ function imprimirPaciente(nombre, apellido, edad, ciudad, genero, pais){
 	}else if(this.city.length > 1 && this.city.search(regLetras)){
 		spanCity.innerHTML = " "
 		alert("Ingresa sólo letras en ciudad");
-	}else if(this.age.length > 1 && this.age.search(regNumeros)){
+	}else if(this.age.length >= 1 && this.age.search(regNumeros)){
 		spanAge.innerHTML = " "	
-		alert("Ingresa sólo números en edad");
+		alert("Ingresa sólo números y edades válidas en edad");
 	}else{
-		if(this.name.length > 1 && this.lastname.length > 1 && this.age.length > 1 && this.city.length > 1 && this.country != 0 && this.gender != 0){
+		if(this.name.length > 1 && this.lastname.length > 1 && this.age.length >= 1 && this.city.length > 1 && this.country != 0 && this.gender != 0){
 		var div = document.createElement("div");
 			div.setAttribute("class", "clase-pacientes");
 
