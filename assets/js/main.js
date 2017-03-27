@@ -28,32 +28,32 @@ function imprimirPaciente(nombre, apellido, edad, ciudad, genero, pais){
 
 	//Validaciones de vacío
 
+	if(this.name.length == 0 && this.lastname.length == 0 && this.city.length == 0 && this.age.length == 0 && this.country == 0 && this.gender == 0){
+		alert("Todos los campos son obligatorios");
+	}
+
 	if(this.name.length == 0){
 		spanName.innerHTML = "Escribe tu nombre"
-	}else if(this.name.length > 1 && this.name.search(regLetras)){
+	}else{
 		spanName.innerHTML = " "
-		alert("Ingresa sólo letras en nombre");
 	}
 
 	if(this.lastname.length == 0){
 		spanLastName.innerHTML = "Escribe tu apellido"
-	}else if(this.lastname.length > 1 && this.lastname.search(regLetras)){
-		alert("Ingresa sólo letras en apellido");
+	}else{
 		spanLastName.innerHTML = " "
 	}
 
 	if(this.city.length == 0){
 		spanCity.innerHTML = "Escribe tu ciudad"
-	}else if(this.city.length > 1 && this.city.search(regLetras)){
-		alert("Ingresa sólo letras en ciudad");
+	}else{
 		spanCity.innerHTML = " "
 	}
 
 	if(this.age.length == 0){
 		spanAge.innerHTML = "Escribe tu edad"
-	}else if(this.age.length > 1 && this.age.search(regNumeros)){
-		alert("Ingresa sólo números en edad");
-		spanAge.innerHTML = " "	
+	}else{
+		spanAge.innerHTML = " "
 	}
 
 	if(this.country == 0){
@@ -68,8 +68,22 @@ function imprimirPaciente(nombre, apellido, edad, ciudad, genero, pais){
 		spanGender.innerHTML = " "	
 	}
 
-	if(((this.name.length > 1 && this.lastname.length > 1) && (this.city.length > 1 && this.age.length > 1)) && (this.country != 0 && this.gender != 0)){
+	//Validaciones de contenido
 
+	if(this.name.length > 1 && this.name.search(regLetras)){
+		spanName.innerHTML = " "
+		alert("Ingresa sólo letras en nombre");
+	}else if(this.lastname.length > 1 && this.lastname.search(regLetras)){
+		spanLastName.innerHTML = " "	
+		alert("Ingresa sólo letras en apellido");
+	}else if(this.city.length > 1 && this.city.search(regLetras)){
+		spanCity.innerHTML = " "
+		alert("Ingresa sólo letras en ciudad");
+	}else if(this.age.length > 1 && this.age.search(regNumeros)){
+		spanAge.innerHTML = " "	
+		alert("Ingresa sólo números en edad");
+	}else{
+		if(this.name.length > 1 && this.lastname.length > 1 && this.age.length > 1 && this.city.length > 1 && this.country != 0 && this.gender != 0){
 		var div = document.createElement("div");
 			div.setAttribute("class", "clase-pacientes");
 
@@ -87,9 +101,11 @@ function imprimirPaciente(nombre, apellido, edad, ciudad, genero, pais){
 
 		document.getElementById("pacientes").appendChild(div);
 		document.getElementById("id-form").reset()
+
+		alert("Registro válido")
+		}
 	}
-	
-	
+};	
 
 		/*
 
@@ -157,5 +173,4 @@ function imprimirPaciente(nombre, apellido, edad, ciudad, genero, pais){
 
 		*/
 
-};
  
