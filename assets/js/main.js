@@ -8,6 +8,13 @@ function imprimirPaciente(nombre, apellido, edad, ciudad, genero, pais){
 	var genero 						= generoSelect.options[generoSelect.selectedIndex].value
 	var paisSelect 					= document.getElementById("country");
 	var pais 						= paisSelect.options[paisSelect.selectedIndex].value
+	
+	var spanName 					= document.getElementById("span-name");
+	var spanLastName 				= document.getElementById("span-lastname");
+	var spanAge 					= document.getElementById("span-age");
+	var spanGender 					= document.getElementById("span-gender");
+	var spanCity 					= document.getElementById("span-city");
+	var spanCountry 				= document.getElementById("span-country");
 
 	this.name 		= nombre;
 	this.lastname 	= apellido;
@@ -16,43 +23,139 @@ function imprimirPaciente(nombre, apellido, edad, ciudad, genero, pais){
 	this.gender 	= genero;
 	this.country 	= pais;
 
-	//Nota: Cambia los alerts y escribe bajo los inputs.
+	var regLetras = /^[a-zA-Z\u00E0-\u00FC]+$/; //Tildes
+	var regNumeros = /[0-9]+/;
+
+	//Validaciones de vacío
 
 	if(this.name.length == 0){
-		alert("Escribe tu nombre")
-		if(this.lastname.length == 0){
-			alert("Escribe tu apellido")
-			if(this.age.length == 0){
-				alert("Escribe tu edad")
-				if(this.city.length == 0){
-					alert("Escribe tu ciudad")
-				}
-			}
-		}
+		spanName.innerHTML = "Escribe tu nombre"
+	}else if(this.name.length > 1 && this.name.search(regLetras)){
+		spanName.innerHTML = " "
+		alert("Ingresa sólo letras en nombre");
+	}
+
+	if(this.lastname.length == 0){
+		spanLastName.innerHTML = "Escribe tu apellido"
+	}else if(this.lastname.length > 1 && this.lastname.search(regLetras)){
+		alert("Ingresa sólo letras en apellido");
+		spanLastName.innerHTML = " "
+	}
+
+	if(this.city.length == 0){
+		spanCity.innerHTML = "Escribe tu ciudad"
+	}else if(this.city.length > 1 && this.city.search(regLetras)){
+		alert("Ingresa sólo letras en ciudad");
+		spanCity.innerHTML = " "
+	}
+
+	if(this.age.length == 0){
+		spanAge.innerHTML = "Escribe tu edad"
+	}else if(this.age.length > 1 && this.age.search(regNumeros)){
+		alert("Ingresa sólo números en edad");
+		spanAge.innerHTML = " "	
+	}
+
+	if(this.country == 0){
+		spanCountry.innerHTML = "Selecciona una de las opciones"
+	}else{
+		spanCountry.innerHTML = " "	
 	}
 
 	if(this.gender == 0){
-		alert("Selecciona una opción en género");
-	}else if(this.country == 0){
-		alert("Selecciona una opción en país");
+		spanGender.innerHTML = "Selecciona una de las opciones"
+	}else{
+		spanGender.innerHTML = " "	
 	}
 
-	var div = document.createElement("div");
-		div.setAttribute("class", "clase-pacientes")
-	var parrafoNombre = document.createElement("p");
-		parrafoNombre.innerHTML = "Nombre: " + this.name + " " + this.lastname;
+	if(((this.name.length > 1 && this.lastname.length > 1) && (this.city.length > 1 && this.age.length > 1)) && (this.country != 0 && this.gender != 0)){
 
-	var parrafoEdad = document.createElement("p");
-		parrafoEdad.innerHTML = "Edad: " + this.age;
-	var parrafoPais = document.createElement("p");
-		parrafoPais.innerHTML = "País: " + this.country
+		var div = document.createElement("div");
+			div.setAttribute("class", "clase-pacientes");
 
-	div.appendChild(parrafoNombre);
-	div.appendChild(parrafoEdad)
-	div.appendChild(parrafoPais)	
+		var parrafoNombre = document.createElement("p");
+			parrafoNombre.innerHTML = "Nombre: " + this.name + " " + this.lastname;
 
-	document.getElementById("pacientes").appendChild(div);
-	document.getElementById("id-form").reset()
+		var parrafoEdad = document.createElement("p");
+			parrafoEdad.innerHTML = "Edad: " + this.age;
+		var parrafoPais = document.createElement("p");
+			parrafoPais.innerHTML = "País: " + this.country
+
+		div.appendChild(parrafoNombre);
+		div.appendChild(parrafoEdad)
+		div.appendChild(parrafoPais)	
+
+		document.getElementById("pacientes").appendChild(div);
+		document.getElementById("id-form").reset()
+	}
+	
+	
+
+		/*
+
+		if(this.name.length == 0){
+			spanName.innerHTML = "Escribe tu nombre"
+		}else if(this.name.search(regLetras)){
+			alert("Ingresa sólo letras en nombre");
+		}else{
+			spanName.innerHTML = " "
+		}
+
+		if(this.lastname.length == 0){
+			spanLastName.innerHTML = "Escribe tu apellido"
+		}else if(this.lastname.search(regLetras)){
+			alert("Ingresa sólo letras en apellido");	
+		}else{
+			spanLastName.innerHTML = " "
+		}
+
+		if(this.city.length == 0){
+			spanCity.innerHTML = "Escribe tu ciudad"
+		}else if(this.city.search(regLetras)){
+			alert("Ingresa sólo letras en ciudad");
+		}else{
+			spanCity.innerHTML = " "
+		}
+
+		if(this.age.length == 0){
+			spanAge.innerHTML = "Escribe tu edad"
+		}else if(this.age.search(regNumeros)){
+			alert("Ingresa sólo números en edad");
+		}else{
+			spanAge.innerHTML = " "
+		}
+
+		if(this.country == 0){
+			spanCountry.innerHTML = "Selecciona una de las opciones"
+		}else if(this.country != 0){
+			spanCountry.innerHTML = " "
+		}
+
+		if(this.gender == 0){
+			spanGender.innerHTML = "Selecciona una de las opciones"
+		}else if(this.gender != 0){
+			spanGender.innerHTML = " "
+		}
+
+	*/
+
+
+		/*
+
+		var soloLetras = function(e){
+			var codigoTecla = e.keyCode;
+			console.log(codigoTecla);
+			if((codigoTecla >= 97 && codigoTecla <= 122) || (codigoTecla >=65 && codigoTecla <= 90) || codigoTecla == 39 || codigoTecla == 32){
+				return true;
+			}else{
+				return false;
+			}
+		}
+
+		this.name.onkeypress = soloLetras;
+		this.lastname.onkeypress = soloLetras;
+
+		*/
 
 };
  
